@@ -81,6 +81,7 @@ export default function UploadForm({ onSubmit, loading }) {
   });
   // Each entry: { type, file }
   const [uploads, setUploads] = useState([{ type: "syllabus", file: null }]);
+  const [forceRegenerate, setForceRegenerate] = useState(false);
 
   function updateMeta(name, value) {
     setMeta((m) => ({ ...m, [name]: value }));
@@ -110,6 +111,7 @@ export default function UploadForm({ onSubmit, loading }) {
         formData.append("file_types", u.type);
       }
     });
+    formData.append("force_regenerate", forceRegenerate ? "true" : "false");
     onSubmit(formData);
   }
 
@@ -174,12 +176,30 @@ export default function UploadForm({ onSubmit, loading }) {
         </button>
       </div>
 
+      <label
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "0.5rem",
+          marginTop: "1.25rem",
+          fontSize: "0.85rem",
+          color: "#555",
+        }}
+      >
+        <input
+          type="checkbox"
+          checked={forceRegenerate}
+          onChange={(e) => setForceRegenerate(e.target.checked)}
+        />
+        Force regenerate (bypass the library and call the API again) / 强制重新生成(绕过合集,重新调用 API)
+      </label>
+
       <button
         type="submit"
         disabled={loading}
         style={{ ...styles.submit, ...(loading ? styles.submitDisabled : {}) }}
       >
-        {loading ? "Generating your plan…" : "Generate study plan"}
+        {loading ? "Generating your plan…" : "Generate study plan / 生成学习计划"}
       </button>
     </form>
   );

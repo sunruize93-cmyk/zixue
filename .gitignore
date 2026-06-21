@@ -3,6 +3,11 @@
 *.env
 !.env.example
 
+# Local database (the plan library lives here in the MVP)
+*.db
+*.sqlite
+*.sqlite3
+
 # Python
 __pycache__/
 *.py[cod]
