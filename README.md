@@ -1,4 +1,4 @@
-<h1 align="center">Zixue (自学)</h1>
+<h1 align="center">study by yourself</h1>
 
 <p align="center">
   <b>AI-powered study plan generator for international students.</b><br>
